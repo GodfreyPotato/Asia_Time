@@ -11,15 +11,16 @@ class location extends StatefulWidget {
 class _locationState extends State<location> {
 
   List<WorldTime> location = [
-    WorldTime(capital: 'Jerusalem'),
-    WorldTime(capital: 'Tokyo'),
-    WorldTime(capital: 'Kabul'),
-    WorldTime(capital: 'Bangkok'),
-    WorldTime(capital: 'Seoul'),
-    WorldTime(capital: 'Manila'),
-    WorldTime(capital: 'Beirut'),
-    WorldTime(capital: 'Dhaka'),
-    WorldTime(capital: 'Colombo'),
+    WorldTime(capital: 'Asia/Jerusalem'),
+    WorldTime(capital: 'Asia/Tokyo'),
+    WorldTime(capital: 'Asia/Kabul'),
+    WorldTime(capital: 'Asia/Bangkok'),
+    WorldTime(capital: 'Asia/Seoul'),
+    WorldTime(capital: 'Asia/Manila'),
+    WorldTime(capital: 'Asia/Beirut'),
+    WorldTime(capital: 'Asia/Dhaka'),
+    WorldTime(capital: 'Asia/Colombo'),
+    WorldTime(capital: 'Europe/Moscow'),
   ];
 
 
@@ -47,11 +48,11 @@ class _locationState extends State<location> {
 
                     Navigator.pushNamed(context,'/home',arguments: {
                       'time': location[index].time,
-                      'capital': location[index].capital,
+                      'capital': location[index].capital.split('/')[1],
                       'scene': location[index].scene,
                     });
                   },
-                  title: Text(location[index].capital),
+                  title: Text(location[index].capital.split('/')[1]),
                 ),
               ),
             ),

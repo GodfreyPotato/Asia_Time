@@ -15,9 +15,8 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     
     data = ModalRoute.of(context)!.settings.arguments as Map;
-    
-
     scene = data['scene'];
+
     return Scaffold(
         backgroundColor: Colors.amber,
         body: Container(

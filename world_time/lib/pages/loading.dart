@@ -16,10 +16,10 @@ class _loadingState extends State<loading> {
 
 
   void updateTime() async{
-    WorldTime info = WorldTime(capital: 'Manila');
+    WorldTime info = WorldTime(capital: 'Asia/Manila');
     await info.getTime();
     Navigator.pushReplacementNamed(context, '/home', arguments: {
-      'time': info.time, 'capital': info.capital,'scene': info.scene
+      'time': info.time, 'capital': info.capital.split('/')[1],'scene': info.scene,
     });
   }
   

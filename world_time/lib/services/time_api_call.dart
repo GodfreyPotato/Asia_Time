@@ -6,30 +6,22 @@ class WorldTime{
   late String capital;
   late String time;
   String? scene;
-
+  late int timeScene;
 
   WorldTime({required this.capital});
 
   Future <void> getTime() async{
     try{
-      Response res = await get(Uri.parse('http://worldtimeapi.org/api/timezone/Asia/$capital'));
+      Response res = await get(Uri.parse('http://worldtimeapi.org/api/timezone/$capital'));
       Map data = jsonDecode(res.body);
 
       DateTime now = DateTime.parse(data['utc_datetime']);
       now = now.add(Duration(hours: int.parse(data['utc_offset'].substring(2,3))));
 
       time = DateFormat.jm().format(now);
-
-      if(now.hour>5&&now.hour<=12){
-        scene = 'day.jpeg';
-      }
-      else if(now.hour>12&&now.hour<=17){
-        scene = 'noon.jpg';
-      }
-      else{
-        scene = 'night.jpeg';
-      }
-
+      print('russia: $data');
+      timeScene = now.hour;
+      getScene();
     }catch(e){
       time = '$e';
     }
@@ -37,5 +29,16 @@ class WorldTime{
 
   }
 
+  void getScene(){
+      if(timeScene>5&&timeScene<=12){
+        scene = 'day.jpeg';
+      }
+      else if(timeScene>12&&timeScene<=17){
+        scene = 'noon.jpg';
+      }
+      else{
+        scene = 'night.jpeg';
+      }
+  }
 
 }
