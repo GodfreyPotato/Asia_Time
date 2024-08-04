@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:world_time/services/time_api_call.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
-
+late String loadTime;
 class loading extends StatefulWidget {
   const loading({super.key});
 
@@ -13,16 +13,16 @@ class loading extends StatefulWidget {
 }
 
 class _loadingState extends State<loading> {
-
-
   void updateTime() async{
     WorldTime info = WorldTime(capital: 'Asia/Manila');
     await info.getTime();
+    loadTime = info.time;
     Navigator.pushReplacementNamed(context, '/home', arguments: {
-      'time': info.time, 'capital': info.capital.split('/')[1],'scene': info.scene,
+      'time': info.time, 'capital': info.capital,'scene': info.scene,
     });
   }
   
+
   @override
   void initState() {
     super.initState();
@@ -34,8 +34,9 @@ class _loadingState extends State<loading> {
     return Scaffold(
       body: Center(child: SpinKitChasingDots(
         color: Colors.green,
-        size: 50,
+        size:90,
       ),),
     );
   }
 }
+

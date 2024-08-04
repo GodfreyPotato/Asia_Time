@@ -48,7 +48,7 @@ class _locationState extends State<location> {
 
                     Navigator.pushNamed(context,'/home',arguments: {
                       'time': location[index].time,
-                      'capital': location[index].capital.split('/')[1],
+                      'capital': location[index].capital,
                       'scene': location[index].scene,
                     });
                   },

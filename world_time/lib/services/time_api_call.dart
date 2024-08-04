@@ -5,9 +5,9 @@ import 'package:intl/intl.dart';
 class WorldTime{
   late String capital;
   late String time;
-  String? scene;
+  late String scene = "";
   late int timeScene;
-
+  late DateTime dtNow;
   WorldTime({required this.capital});
 
   Future <void> getTime() async{
@@ -16,10 +16,11 @@ class WorldTime{
       Map data = jsonDecode(res.body);
 
       DateTime now = DateTime.parse(data['utc_datetime']);
+      
       now = now.add(Duration(hours: int.parse(data['utc_offset'].substring(2,3))));
+      dtNow = now;
 
       time = DateFormat.jm().format(now);
-      print('russia: $data');
       timeScene = now.hour;
       getScene();
     }catch(e){
