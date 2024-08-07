@@ -27,8 +27,8 @@ class _HomeState extends State<Home> {
       homeTime = info.time;
     });
     DateTime now = info.dtNow;
-    t = Timer.periodic(Duration(minutes: 1), (t){
-      now = now.add(Duration(minutes: 1));
+    t = Timer.periodic(Duration(seconds: 1), (t){
+      now = now.add(Duration(seconds: 1));
       setState(() {
         homeTime = DateFormat.jm().format(now);
       });
